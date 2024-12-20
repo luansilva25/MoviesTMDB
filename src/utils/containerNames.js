@@ -1,0 +1,1 @@
+export const names = ['Populares', 'em alta', "lançamento", 'mais votadas']
