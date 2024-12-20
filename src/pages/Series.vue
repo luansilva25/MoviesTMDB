@@ -3,18 +3,18 @@ import CardCarousel from '@/components/home/CardCarousel.vue';
 import { useMoviesStore } from '@/stores/movies';
 import { onMounted, ref } from 'vue';
 import router from '@/router';
-
+const apiKey = import.meta.env.VITE_API_KEY
 const MovieStore = useMoviesStore()
 
 const page = ref(1)
 
 async function Nextpage(Nextpage){
     page.value = Nextpage
-    await MovieStore.GetAllMovies(`discover/tv?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc&page=${page.value}`)
+    await MovieStore.GetAllMovies(`discover/tv?api_key=${apiKey}&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc&page=${page.value}`)
 }
 
 onMounted( async () =>{
-    await MovieStore.GetAllMovies(`discover/tv?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc&page=${page.value}`)
+    await MovieStore.GetAllMovies(`discover/tv?api_key=${apiKey}&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc&page=${page.value}`)
 })
 </script>
 <template>

@@ -3,7 +3,7 @@ import { routes } from '@/utils/routes';
 import { useMoviesStore } from '@/stores/movies';
 import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-
+const apiKey = import.meta.env.VITE_API_KEY
 const route = useRoute()
 const showsearchBar = ref(false)
 const MoviesStore = useMoviesStore()
@@ -20,10 +20,10 @@ async function filterMovies() {
         await MoviesStore.filterMovies(linkComputed.value, route.path)
     }
     else if (route.path === '/movies') {
-        await MoviesStore.GetAllMovies(`discover/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc`)
+        await MoviesStore.GetAllMovies(`discover/movie?api_key=${apiKey}&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc`)
     }
     else if (route.path === '/series') {
-        await MoviesStore.GetAllMovies(`discover/tv?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc`)
+        await MoviesStore.GetAllMovies(`discover/tv?api_key=${apiKey}&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=popularity.desc`)
     }
     console.log(search.value)
 }
@@ -31,11 +31,11 @@ async function filterMovies() {
 watch(route, () => {
     if (route.path === '/movies') {
         showsearchBar.value = true
-        link.value = "search/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&query="
+        link.value = `search/movie?api_key=${apiKey}&language=pt-BR&query=`
     }
     else if (route.path === '/series') {
         showsearchBar.value = true
-        link.value = "search/tv?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&query="
+        link.value = `search/tv?api_key=${apiKey}&language=pt-BR&query=`
     }
     else {
         showsearchBar.value = false

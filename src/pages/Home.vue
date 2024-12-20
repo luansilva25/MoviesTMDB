@@ -9,13 +9,15 @@ import CarouselPrincipal from '@/components/home/CarouselPrincipal.vue';
 import { Channels } from '@/utils/DisneyChannels';
 const moviesStore = useMoviesStore()
 
+const apiKey = import.meta.env.VITE_API_KEY
+
 
 onMounted(async () => {
-    await moviesStore.GetPopularMovies(`discover/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&with_companies=1|2|3|420|7521&sort_by=popularity.desc&language=pt-BR&primary_release_date.lte=2024-10-31`)
-    await moviesStore.GetAltaMovies("discover/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&sort_by=vote_average.desc&with_companies=1|2|3|420|7521&vote_count.gte=1000")
-    await moviesStore.GetLancamentoMovies("discover/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&sort_by=release_date.desc&with_companies=1|2|3|420|7521&primary_release_date.lte=2024-10-31")
-    await moviesStore.GetMaisVotadosMovies("discover/movie?api_key=e7d4b6a6fbebc495912044d6d4cc5a13&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=vote_count.desc")
-    
+    await moviesStore.GetPopularMovies(`discover/movie?api_key=${apiKey}&with_companies=1|2|3|420|7521&sort_by=popularity.desc&language=pt-BR&primary_release_date.lte=2024-10-31`)
+    await moviesStore.GetAltaMovies(`discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=vote_average.desc&with_companies=1|2|3|420|7521&vote_count.gte=1000`)
+    await moviesStore.GetLancamentoMovies(`discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=release_date.desc&with_companies=1|2|3|420|7521&primary_release_date.lte=2024-10-31`)
+    await moviesStore.GetMaisVotadosMovies(`discover/movie?api_key=${apiKey}&language=pt-BR&with_companies=1|2|3|420|7521&sort_by=vote_count.desc`)
+
 })
 </script>
 <template>
