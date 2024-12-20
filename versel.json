@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "https://movies-tmdb-chi.vercel.app//:path*",
+        "destination": "https://api.themoviedb.org/3/:path*"
+      }
+    ]
+  }
+  
